@@ -1,0 +1,1518 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T4X5GNHDMB"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-T4X5GNHDMB');</script>
+<title>나고야 가미코치 투어 찾기</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --primary: #2563EB;
+  --primary-light: #DBEAFE;
+  --primary-dark: #1D4ED8;
+  --primary-50: #EFF6FF;
+  --success: #10B981;
+  --success-light: #D1FAE5;
+  --warning: #F59E0B;
+  --warning-light: #FEF3C7;
+  --danger: #EF4444;
+  --danger-light: #FEE2E2;
+  --gray-50: #F9FAFB;
+  --gray-100: #F3F4F6;
+  --gray-200: #E5E7EB;
+  --gray-300: #D1D5DB;
+  --gray-400: #9CA3AF;
+  --gray-500: #6B7280;
+  --gray-600: #4B5563;
+  --gray-700: #374151;
+  --gray-800: #1F2937;
+  --card-shadow: 0 2px 12px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.06);
+  --card-shadow-hover: 0 8px 24px rgba(37,99,235,0.14), 0 2px 8px rgba(0,0,0,0.08);
+}
+
+html, body {
+  min-height: 100%;
+  font-family: system-ui, -apple-system, 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+  background: linear-gradient(135deg, #EFF6FF 0%, #F0FDFA 100%);
+  background-attachment: fixed;
+  color: var(--gray-800);
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 12px 48px;
+}
+
+/* ── HEADER ── */
+.app-header {
+  width: 100%;
+  max-width: 480px;
+  padding: 18px 0 12px;
+  text-align: center;
+}
+.logo-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: white;
+  border: 1px solid var(--primary-light);
+  border-radius: 100px;
+  padding: 4px 12px 4px 8px;
+  font-size: 12px;
+  color: var(--primary);
+  font-weight: 600;
+  box-shadow: 0 1px 4px rgba(37,99,235,0.1);
+  margin-bottom: 12px;
+}
+.logo-badge .dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--primary);
+  animation: pulse-dot 2s infinite;
+}
+@keyframes pulse-dot {
+  0%,100% { opacity:1; transform:scale(1); }
+  50%      { opacity:.6; transform:scale(.85); }
+}
+.app-header h1 {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--gray-800);
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+  margin-bottom: 4px;
+}
+.app-header h1 em { font-style: normal; color: var(--primary); }
+.app-header .subtitle { font-size: 13px; color: var(--gray-500); margin-bottom: 4px; }
+
+/* ── STALE BANNER ── */
+.stale-banner {
+  width: 100%; max-width: 480px;
+  background: var(--warning-light);
+  border: 1px solid #FDE68A;
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-size: 12px; color: #92400E;
+  line-height: 1.5;
+  margin-bottom: 12px;
+  display: none;
+}
+.stale-banner.visible { display: block; }
+
+/* ── LOADING / ERROR ── */
+.loading-state {
+  width: 100%; max-width: 480px;
+  background: white; border-radius: 20px;
+  box-shadow: var(--card-shadow);
+  padding: 48px 24px;
+  text-align: center;
+}
+.spinner {
+  width: 40px; height: 40px;
+  border: 3px solid var(--primary-light);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin .8s linear infinite;
+  margin: 0 auto 16px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading-text { font-size: 14px; color: var(--gray-500); font-weight: 500; }
+
+.error-state {
+  width: 100%; max-width: 480px;
+  background: white; border-radius: 20px;
+  box-shadow: var(--card-shadow);
+  padding: 40px 24px;
+  text-align: center; display: none;
+}
+.error-state.visible { display: block; }
+.error-icon { font-size: 40px; margin-bottom: 12px; }
+.error-title { font-size: 16px; font-weight: 700; color: var(--gray-700); margin-bottom: 8px; }
+.error-msg   { font-size: 13px; color: var(--gray-500); margin-bottom: 20px; line-height: 1.5; }
+.btn-retry {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--primary); color: white;
+  border: none; border-radius: 10px;
+  padding: 10px 20px; font-size: 14px; font-weight: 700;
+  cursor: pointer; transition: all .2s;
+  box-shadow: 0 2px 8px rgba(37,99,235,.3);
+}
+.btn-retry:hover { background: var(--primary-dark); transform: translateY(-1px); }
+
+/* ── MAIN CONTENT ── */
+.app-content {
+  width: 100%; max-width: 480px;
+  animation: fadeIn .3s ease;
+}
+@keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+
+/* ── FILTER PANEL ── */
+.filter-panel {
+  background: white;
+  border-radius: 20px;
+  box-shadow: var(--card-shadow);
+  padding: 20px 16px 16px;
+  margin-bottom: 14px;
+}
+.filter-panel-title {
+  font-size: 15px; font-weight: 700;
+  color: var(--gray-800); letter-spacing: -0.02em;
+  margin-bottom: 14px;
+  display: flex; align-items: center; gap: 6px;
+}
+
+/* filter row label */
+.filter-row { margin-bottom: 14px; }
+.filter-row:last-child { margin-bottom: 0; }
+.filter-label {
+  font-size: 12px; font-weight: 700;
+  color: var(--gray-500); letter-spacing: 0.03em;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+  display: flex; align-items: center; gap: 5px;
+}
+
+/* chip group */
+.chip-group {
+  display: flex; flex-wrap: wrap; gap: 6px;
+}
+.chip {
+  display: inline-flex; align-items: center; gap: 4px;
+  background: var(--gray-50);
+  border: 1.5px solid var(--gray-200);
+  border-radius: 100px;
+  padding: 5px 12px;
+  font-size: 13px; font-weight: 600;
+  color: var(--gray-600);
+  cursor: pointer;
+  transition: all .18s;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  white-space: nowrap;
+}
+.chip:hover { border-color: var(--primary); color: var(--primary); background: var(--primary-50); }
+.chip.active {
+  background: var(--primary); border-color: var(--primary);
+  color: white;
+  box-shadow: 0 2px 6px rgba(37,99,235,.25);
+}
+.chip.active:hover { background: var(--primary-dark); border-color: var(--primary-dark); }
+
+/* price hint under type chips */
+.price-hint {
+  font-size: 11px; color: var(--gray-400);
+  margin-top: 5px;
+  min-height: 16px;
+  transition: all .2s;
+}
+
+/* ── CALENDAR + PERSONS ROW ── */
+.date-persons-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: start;
+}
+
+/* calendar */
+.cal-wrap { }
+.cal-quick-row {
+  display: flex; flex-wrap: wrap; gap: 5px;
+  margin-bottom: 8px;
+}
+.cal-quick-btn {
+  background: var(--gray-50);
+  border: 1.5px solid var(--gray-200);
+  border-radius: 6px;
+  padding: 4px 9px;
+  font-size: 11px; font-weight: 600;
+  color: var(--gray-600);
+  cursor: pointer;
+  transition: all .15s;
+  user-select: none;
+}
+.cal-quick-btn:hover, .cal-quick-btn.active {
+  border-color: var(--primary); color: var(--primary);
+  background: var(--primary-50);
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+.cal-dow {
+  text-align: center;
+  font-size: 10px; font-weight: 700;
+  color: var(--gray-400);
+  padding: 3px 0 4px;
+}
+.cal-dow:first-child { color: #EF4444; }
+.cal-dow:last-child  { color: #3B82F6; }
+
+.cal-day {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 8px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: all .15s;
+  border: 2px solid transparent;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  min-height: 32px; gap: 1px;
+}
+.cal-day .day-num {
+  font-size: 11px; font-weight: 600;
+  line-height: 1; color: var(--gray-700);
+}
+.cal-day.sunday .day-num  { color: #EF4444; }
+.cal-day.saturday .day-num { color: #3B82F6; }
+.cal-day .avail-dot {
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--gray-300);
+}
+.cal-day.avail-high .avail-dot { background: var(--success); }
+.cal-day.avail-med  .avail-dot { background: var(--warning); }
+.cal-day.avail-low  .avail-dot { background: var(--danger); }
+.cal-day.avail-none .avail-dot { background: var(--gray-300); }
+.cal-day.avail-high:not(.past):not(.empty) { background: rgba(16,185,129,.06); }
+.cal-day.avail-med:not(.past):not(.empty)  { background: rgba(245,158,11,.06); }
+.cal-day.avail-low:not(.past):not(.empty)  { background: rgba(239,68,68,.06); }
+.cal-day.past, .cal-day.empty { opacity: .3; cursor: default; pointer-events: none; }
+.cal-day.avail-none:not(.past):not(.empty) { opacity: .45; cursor: default; pointer-events: none; }
+.cal-day:not(.past):not(.empty):not(.avail-none):hover {
+  border-color: var(--primary); background: var(--primary-50);
+}
+.cal-day.selected {
+  border-color: var(--primary) !important;
+  background: var(--primary) !important;
+  box-shadow: 0 2px 6px rgba(37,99,235,.3);
+}
+.cal-day.selected .day-num  { color: white !important; }
+.cal-day.selected .avail-dot { background: rgba(255,255,255,.6) !important; }
+
+.cal-footer {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: 7px; flex-wrap: wrap; gap: 6px;
+}
+.cal-selected-label {
+  font-size: 11px; font-weight: 600;
+  color: var(--primary); min-height: 16px;
+}
+.cal-selected-label.warn { color: var(--gray-400); }
+.cal-legend {
+  display: flex; gap: 8px; flex-wrap: wrap;
+}
+.legend-item {
+  display: flex; align-items: center; gap: 3px;
+  font-size: 10px; color: var(--gray-400);
+}
+.legend-dot { width: 6px; height: 6px; border-radius: 50%; }
+
+/* month header in calendar */
+.cal-month-header {
+  font-size: 12px; font-weight: 700;
+  color: var(--gray-600); letter-spacing: 0.02em;
+  margin-top: 10px; margin-bottom: 4px;
+  padding: 0 2px;
+}
+.cal-month-header:first-child { margin-top: 0; }
+
+/* person picker */
+.person-col { padding-top: 20px; }
+.person-label { font-size: 11px; font-weight: 700; color: var(--gray-500); margin-bottom: 6px; text-align: center; }
+.person-picker {
+  display: flex; flex-direction: column;
+  align-items: center; gap: 2px;
+  background: var(--gray-50);
+  border: 1.5px solid var(--gray-200);
+  border-radius: 12px;
+  padding: 6px 4px;
+}
+.person-btn {
+  width: 36px; height: 36px;
+  background: none; border: none;
+  cursor: pointer; font-size: 18px;
+  color: var(--primary);
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 8px;
+  transition: background .15s;
+}
+.person-btn:hover { background: var(--primary-light); }
+.person-btn:disabled { color: var(--gray-300); cursor: default; }
+.person-btn:disabled:hover { background: none; }
+.person-count {
+  font-size: 17px; font-weight: 800;
+  color: var(--gray-800); line-height: 1;
+  padding: 3px 0;
+}
+.person-unit { font-size: 10px; color: var(--gray-400); }
+
+/* ── RESULTS SECTION ── */
+.results-section { width: 100%; max-width: 480px; }
+
+.section-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 10px;
+}
+.section-title {
+  font-size: 15px; font-weight: 800;
+  color: var(--gray-800); letter-spacing: -0.02em;
+  display: flex; align-items: center; gap: 6px;
+}
+.match-count {
+  font-size: 12px; font-weight: 600;
+  color: var(--gray-500);
+}
+.match-count strong { color: var(--primary); }
+
+/* ── COMPARISON GRID ── */
+.compare-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+/* mobile swipe */
+@media (max-width: 479px) {
+  .compare-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 10px;
+    padding-bottom: 8px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .compare-grid::-webkit-scrollbar { display: none; }
+  .compare-card {
+    min-width: 220px;
+    scroll-snap-align: start;
+    flex-shrink: 0;
+  }
+  /* swipe hint */
+  .swipe-hint {
+    font-size: 11px; color: var(--gray-400);
+    text-align: center;
+    margin-top: -4px; margin-bottom: 10px;
+    display: flex; align-items: center; justify-content: center; gap: 4px;
+  }
+}
+@media (min-width: 480px) {
+  .swipe-hint { display: none; }
+}
+
+.compare-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: var(--card-shadow);
+  padding: 12px 10px 14px;
+  border: 2px solid transparent;
+  transition: all .2s;
+  display: flex; flex-direction: column;
+}
+.compare-card:hover {
+  box-shadow: var(--card-shadow-hover);
+  border-color: var(--primary-light);
+  transform: translateY(-2px);
+}
+
+.rank-badge {
+  font-size: 13px; font-weight: 700;
+  margin-bottom: 8px;
+  display: flex; align-items: center; gap: 4px;
+}
+.rank-badge .rank-num {
+  font-size: 10px;
+  background: var(--gray-100);
+  color: var(--gray-500);
+  border-radius: 4px;
+  padding: 1px 5px;
+  font-weight: 700;
+}
+.rank-1 .rank-num { background: #FEF9C3; color: #854D0E; }
+.rank-2 .rank-num { background: var(--gray-100); color: var(--gray-600); }
+.rank-3 .rank-num { background: #FEF3C7; color: #92400E; }
+
+.compare-card .card-name {
+  font-size: 12px; font-weight: 700;
+  color: var(--gray-800); line-height: 1.35;
+  margin-bottom: 8px;
+  flex: 1;
+  letter-spacing: -0.01em;
+}
+
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 10px;
+  font-size: 11px;
+}
+.compare-table td {
+  padding: 3px 0;
+  vertical-align: top;
+  line-height: 1.4;
+}
+.compare-table td:first-child {
+  color: var(--gray-400); font-weight: 600;
+  width: 38px; padding-right: 4px;
+  white-space: nowrap;
+}
+.compare-table td:last-child { color: var(--gray-700); }
+.compare-table tr + tr td { border-top: 1px solid var(--gray-100); padding-top: 4px; }
+
+.compare-price {
+  font-size: 16px; font-weight: 800;
+  color: var(--primary); letter-spacing: -0.03em;
+  margin-bottom: 2px;
+}
+.compare-price .price-unit { font-size: 11px; font-weight: 500; color: var(--gray-400); }
+
+.compare-feature {
+  font-size: 11px; color: var(--gray-500);
+  background: var(--gray-50); border-radius: 6px;
+  padding: 4px 7px; margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.btn-book {
+  display: flex; align-items: center; justify-content: center; gap: 4px;
+  background: var(--primary); color: white;
+  text-decoration: none; border-radius: 8px;
+  padding: 8px 6px;
+  font-size: 11px; font-weight: 700;
+  transition: all .2s;
+  box-shadow: 0 1px 4px rgba(37,99,235,.3);
+  white-space: nowrap;
+}
+.btn-book:hover { background: var(--primary-dark); transform: translateY(-1px); }
+
+/* badge helpers */
+.badge {
+  display: inline-flex; align-items: center; gap: 2px;
+  border-radius: 4px; padding: 1px 5px;
+  font-size: 10px; font-weight: 600;
+}
+.badge-guide-ko       { background: #FEF9C3; color: #713F12; }
+.badge-guide-en       { background: #E0E7FF; color: #3730A3; }
+.badge-guide-multi    { background: #EDE9FE; color: #4C1D95; }
+.badge-guide-uncertain{ background: #F3F4F6; color: #374151; }
+.badge-guide-self     { background: #F0FDF4; color: #14532D; }
+.badge-type-day       { background: #FFF7ED; color: #9A3412; }
+.badge-type-overnight { background: #EFF6FF; color: #1E40AF; }
+.badge-type-multi     { background: #F0FDF4; color: #14532D; }
+.badge-stock-ok       { background: var(--success-light); color: #065F46; }
+.badge-stock-warn     { background: var(--warning-light); color: #92400E; }
+.badge-stock-low      { background: var(--danger-light);  color: #991B1B; }
+.badge-avail-ok       { background: var(--success-light); color: #065F46; }
+.badge-avail-none     { background: var(--danger-light);  color: #991B1B; }
+
+/* course tag chips inline */
+.course-tags { display: flex; flex-wrap: wrap; gap: 3px; }
+.course-tag {
+  display: inline-flex; align-items: center;
+  background: #F0F9FF; color: #0369A1;
+  border-radius: 4px; padding: 1px 5px;
+  font-size: 10px; font-weight: 600;
+}
+
+/* ── ALTERNATIVE CARDS ── */
+.alt-section { margin-bottom: 14px; }
+.alt-section-title {
+  font-size: 13px; font-weight: 700;
+  color: var(--gray-500); margin-bottom: 8px;
+  display: flex; align-items: center; gap: 5px;
+}
+
+.alt-card-row {
+  display: flex; gap: 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 4px;
+}
+.alt-card-row::-webkit-scrollbar { display: none; }
+
+.alt-card {
+  flex-shrink: 0;
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
+  border: 1.5px solid var(--gray-200);
+  padding: 10px 12px;
+  opacity: 0.65;
+  transition: opacity .2s;
+  min-width: 190px; max-width: 240px;
+}
+.alt-card:hover { opacity: 0.85; }
+.alt-hint-label {
+  display: inline-flex; align-items: center; gap: 4px;
+  background: var(--warning-light); color: #92400E;
+  border-radius: 6px; padding: 3px 7px;
+  font-size: 10px; font-weight: 600;
+  margin-bottom: 7px; line-height: 1.3;
+}
+.alt-card .card-name {
+  font-size: 11px; font-weight: 700;
+  color: var(--gray-700); line-height: 1.35;
+  margin-bottom: 5px;
+}
+.alt-card .card-price {
+  font-size: 14px; font-weight: 800;
+  color: var(--primary); margin-bottom: 6px;
+}
+.alt-card .btn-book {
+  font-size: 10px; padding: 6px;
+}
+
+/* ── ALL PRODUCTS ACCORDION ── */
+.accordion-wrap {
+  background: white; border-radius: 16px;
+  box-shadow: var(--card-shadow);
+  overflow: hidden; margin-bottom: 14px;
+}
+.accordion-toggle {
+  width: 100%; background: none; border: none;
+  padding: 14px 16px;
+  display: flex; align-items: center; justify-content: space-between;
+  cursor: pointer;
+  font-size: 13px; font-weight: 700;
+  color: var(--gray-700);
+  transition: background .15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.accordion-toggle:hover { background: var(--gray-50); }
+.accordion-toggle .toggle-icon {
+  font-size: 12px; color: var(--gray-400);
+  transition: transform .25s;
+}
+.accordion-toggle.open .toggle-icon { transform: rotate(180deg); }
+
+.accordion-body {
+  display: none;
+  border-top: 1px solid var(--gray-100);
+  padding: 8px 0;
+}
+.accordion-body.open { display: block; }
+
+.all-product-row {
+  display: flex; align-items: center;
+  padding: 9px 16px; gap: 10px;
+  border-bottom: 1px solid var(--gray-100);
+  transition: background .12s;
+}
+.all-product-row:last-child { border-bottom: none; }
+.all-product-row:hover { background: var(--gray-50); }
+.all-product-info { flex: 1; min-width: 0; }
+.all-product-name {
+  font-size: 12px; font-weight: 700;
+  color: var(--gray-800); line-height: 1.3;
+  margin-bottom: 3px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.all-product-meta {
+  display: flex; flex-wrap: wrap; gap: 4px;
+  align-items: center;
+}
+.all-product-price {
+  font-size: 13px; font-weight: 800; color: var(--primary);
+  white-space: nowrap;
+  margin-right: 4px;
+}
+.all-product-link {
+  display: inline-flex; align-items: center; gap: 3px;
+  background: var(--primary); color: white;
+  text-decoration: none; border-radius: 6px;
+  padding: 5px 9px; font-size: 11px; font-weight: 700;
+  white-space: nowrap;
+  transition: background .15s;
+}
+.all-product-link:hover { background: var(--primary-dark); }
+
+/* ── NO RESULTS ── */
+.empty-state {
+  background: white; border-radius: 16px;
+  box-shadow: var(--card-shadow);
+  padding: 28px 20px; text-align: center;
+  margin-bottom: 14px;
+}
+.empty-state .empty-icon { font-size: 40px; margin-bottom: 10px; }
+.empty-state h3 { font-size: 15px; font-weight: 700; color: var(--gray-700); margin-bottom: 6px; }
+.empty-state p { font-size: 12px; color: var(--gray-500); line-height: 1.5; }
+.empty-avail-rows { margin-top: 14px; display: flex; flex-direction: column; gap: 5px; text-align: left; }
+.empty-avail-row {
+  background: var(--gray-50); border-radius: 8px;
+  padding: 6px 10px; font-size: 11px; color: var(--gray-600);
+  display: flex; align-items: center; gap: 5px;
+}
+.empty-avail-row strong { color: var(--primary); font-weight: 700; }
+
+/* ── FOOTER ── */
+.app-footer {
+  width: 100%; max-width: 480px;
+  margin-top: 20px; text-align: center;
+}
+.footer-meta { font-size: 11px; color: var(--gray-400); margin-bottom: 3px; }
+.footer-disclaimer { font-size: 11px; color: var(--gray-400); line-height: 1.5; }
+
+/* ── UTILITY ── */
+.hidden { display: none !important; }
+.divider { height: 1px; background: var(--gray-100); margin: 12px 0; }
+
+@media (min-width: 600px) {
+  .app-shell { padding: 28px 20px 60px; }
+  .filter-panel { padding: 22px 20px 18px; }
+}
+@media (min-width: 768px) {
+  .app-shell { max-width: 100%; padding: 28px 40px 60px; }
+  #appContent { max-width: 100% !important; display: grid !important; grid-template-columns: 340px 1fr; gap: 32px; align-items: start; }
+  #appContent.hidden { display: none !important; }
+  .filter-panel { position: sticky; top: 16px; max-height: calc(100vh - 32px); overflow-y: auto; }
+  .results-section { max-width: none !important; }
+  #appContent { max-width: 100% !important; }
+  .stale-banner, .footer-meta, .footer-disclaimer { max-width: none !important; }
+  .compare-card { max-width: none; }
+}
+@media (min-width: 1200px) {
+  .app-shell { padding: 28px 60px 60px; }
+  #appContent { grid-template-columns: 360px 1fr; gap: 48px; }
+}
+@media (max-width: 360px) {
+  .chip { font-size: 12px; padding: 4px 10px; }
+  .compare-price { font-size: 14px; }
+  .cal-day .day-num { font-size: 10px; }
+}
+</style>
+</head>
+<body>
+<div class="app-shell">
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="logo-badge"><span class="dot"></span> 나고야 출발 가미코치</div>
+    <h1>🏔️ <em>가미코치 투어</em> 찾기</h1>
+    <p class="subtitle">2026 가미코치 시즌 (6월 – 8월)</p>
+  </header>
+
+  <div class="stale-banner" id="staleBanner"></div>
+
+  <div class="loading-state" id="loadingState">
+    <div class="spinner"></div>
+    <div class="loading-text">최신 데이터를 불러오고 있어요...</div>
+  </div>
+
+  <div class="error-state" id="errorState">
+    <div class="error-icon">😥</div>
+    <div class="error-title">데이터를 불러올 수 없어요</div>
+    <div class="error-msg">네트워크 연결을 확인하고 다시 시도해주세요.</div>
+    <button class="btn-retry" onclick="loadData()">↺ 다시 시도</button>
+  </div>
+
+  <div id="appContent" class="hidden" style="width:100%">
+
+    <!-- ── FILTER PANEL ── -->
+    <div class="filter-panel" id="filterPanel">
+      <div class="filter-panel-title">🔍 투어 찾기</div>
+
+      <!-- 1. 투어 유형 -->
+      <div class="filter-row">
+        <div class="filter-label">투어 유형 <span style="font-weight:400;font-size:10px;color:var(--gray-400)">(중복 선택 가능)</span></div>
+        <div class="chip-group" id="typeChips">
+          <button class="chip active" data-type="day"       onclick="toggleType('day')">☀️ 일일투어</button>
+          <button class="chip active" data-type="overnight" onclick="toggleType('overnight')">🌙 1박2일+</button>
+        </div>
+        <div class="price-hint" id="priceHint"></div>
+      </div>
+
+      <!-- 2. 날짜 & 인원 -->
+      <div class="filter-row">
+        <div class="filter-label">📅 날짜 &amp; 👥 인원</div>
+        <div class="date-persons-row">
+          <div class="cal-wrap">
+            <div class="cal-quick-row" id="calQuickRow"></div>
+            <div id="calNav" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+              <button id="calPrev" onclick="navMonth(-1)" style="border:none;background:none;font-size:20px;cursor:pointer;padding:4px 8px;color:var(--primary)">‹</button>
+              <span id="calMonthTitle" style="font-weight:700;font-size:15px;color:var(--primary)"></span>
+              <button id="calNext" onclick="navMonth(1)" style="border:none;background:none;font-size:20px;cursor:pointer;padding:4px 8px;color:var(--primary)">›</button>
+            </div>
+            <div class="calendar-grid" style="margin-bottom:2px">
+              <div class="cal-dow">일</div><div class="cal-dow">월</div><div class="cal-dow">화</div><div class="cal-dow">수</div><div class="cal-dow">목</div><div class="cal-dow">금</div><div class="cal-dow">토</div>
+            </div>
+            <div id="calMonths" class="calendar-grid"></div>
+            <div class="cal-footer">
+              <div class="cal-selected-label warn" id="calLabel">날짜 미선택 = 전체</div>
+              <div class="cal-legend">
+                <div class="legend-item"><div class="legend-dot" style="background:var(--success)"></div>여유</div>
+                <div class="legend-item"><div class="legend-dot" style="background:var(--warning)"></div>제한</div>
+                <div class="legend-item"><div class="legend-dot" style="background:var(--danger)"></div>마감임박</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="person-col">
+            <div class="person-label">인원</div>
+            <div class="person-picker">
+              <button class="person-btn" id="btnPlus"  onclick="changePax(1)">+</button>
+              <div class="person-count" id="paxCount">2</div>
+              <div class="person-unit">명</div>
+              <button class="person-btn" id="btnMinus" onclick="changePax(-1)">−</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. 가이드 언어 -->
+      <div class="filter-row">
+        <div class="filter-label">가이드 언어</div>
+        <div class="chip-group">
+          <button class="chip" data-guide="korean"  onclick="setGuide('korean')">🇰🇷 한국어 가이드</button>
+          <button class="chip" data-guide="foreign" onclick="setGuide('foreign')">🌏 영어/다국어 가이드</button>
+          <button class="chip active" data-guide="any" onclick="setGuide('any')">✨ 상관없음</button>
+        </div>
+      </div>
+
+      <!-- 4. 추가 경유지 -->
+      <div class="filter-row">
+        <div class="filter-label">추가 경유지</div>
+        <div style="font-size:11px;color:var(--gray-400);margin-bottom:6px;line-height:1.4">
+          가미코치는 기본 코스예요. 추가로 가고 싶은 곳이 있다면 선택하세요!
+        </div>
+        <div class="chip-group">
+          <button class="chip" data-course="알펜루트" onclick="toggleCourse('알펜루트')">🏔️ 알펜루트</button>
+          <button class="chip" data-course="후지산"   onclick="toggleCourse('후지산')">🗻 후지산</button>
+        </div>
+      </div>
+    </div><!-- /filter-panel -->
+
+    <!-- ── RESULTS SECTION ── -->
+    <div class="results-section" id="resultsSection"></div>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <div class="footer-meta" id="footerMeta"></div>
+      <div class="footer-disclaimer">실제 예약 가능 여부와 가격은 상품 페이지에서 최종 확인해주세요 · 가격은 성인 기준 최저 옵션이며 선택 옵션에 따라 달라질 수 있어요</div>
+    </footer>
+
+  </div><!-- /appContent -->
+</div><!-- /app-shell -->
+
+<script>
+// ==================== DATA & CONSTANTS ====================
+const DATA_URL = 'data.json';
+let RAW_DATA = null;
+
+// KST today
+function getTodayKST() {
+  const now = new Date();
+  const kstOffset = 9 * 60;
+  const localOffset = -now.getTimezoneOffset();
+  const kstNow = new Date(now.getTime() + (kstOffset - localOffset) * 60000);
+  return { year: kstNow.getUTCFullYear(), month: kstNow.getUTCMonth() + 1, day: kstNow.getUTCDate() };
+}
+
+const DISPLAY_NAMES = {
+  "4634960": "가미코치 1일 버스투어",
+  "4766833": "가미코치 1일 버스투어 (영어/일본어)",
+  "5782051": "가미코치 영어 가이드 하이킹 투어",
+  "5812325": "가미코치 셀프 하이킹 투어",
+  "3881217": "알펜루트 & 가미코치 1일 투어",
+  "3881219": "알펜루트 & 후지산 연계 1박2일~",
+};
+
+const FEATURES = {
+  "4634960": "HIS 운영 최저가 버스투어",
+  "4766833": "영어/일본어 가이드 선택 가능",
+  "5782051": "영어 가이드 하이킹 투어",
+  "5812325": "가이드 없이 자유롭게 하이킹",
+  "3881217": "한국어 가이드, 알펜루트+가미코치 동시",
+  "3881219": "한국어 가이드, 후지산/알펜루트 연계 가능",
+};
+
+// course tags: gid -> [tags]
+const COURSE_TAGS = {
+  "4634960": [],
+  "4766833": [],
+  "5782051": [],
+  "5812325": [],
+  "3881217": ["알펜루트"],
+  "3881219": ["알펜루트", "후지산"],
+};
+
+// quantity for ranking
+const QUANTITY = {
+  "3881219": 45,
+  "4634960": 32,
+  "5782051": 14,
+  "4766833": 9,
+  "3881217": 8,
+  "5812325": 5,
+};
+
+const ALL_TYPES = ['day','overnight'];
+const TYPE_NAMES  = { day:'일일투어', overnight:'1박2일+' };
+const DOW_SHORT   = ['(일)','(월)','(화)','(수)','(목)','(금)','(토)'];
+const MONTHS = [
+  { year:2026, month:6, name:'6월', days:30, firstDow:1 },
+  { year:2026, month:7, name:'7월', days:31, firstDow:3 },
+  { year:2026, month:8, name:'8월', days:31, firstDow:6 },
+];
+
+const WEEK_RANGES = [
+  { label:'6월 3주(16~22)',  month:6, start:16, end:22 },
+  { label:'6월 4주(23~30)',  month:6, start:23, end:30 },
+  { label:'7월 1주(1~6)',    month:7, start:1,  end:6 },
+  { label:'7월 2주(7~13)',   month:7, start:7,  end:13 },
+  { label:'7월 3주(14~20)',  month:7, start:14, end:20 },
+  { label:'7월 4주(21~27)',  month:7, start:21, end:27 },
+  { label:'7월 5주(28~31)',  month:7, start:28, end:31 },
+  { label:'8월 1주(1~3)',    month:8, start:1,  end:3 },
+  { label:'8월 2주(4~10)',   month:8, start:4,  end:10 },
+  { label:'8월 3주(11~17)',  month:8, start:11, end:17 },
+  { label:'8월 4주(18~24)',  month:8, start:18, end:24 },
+  { label:'8월 5주(25~31)',  month:8, start:25, end:31 },
+];
+
+const PRICE_HINTS = {
+  day:      '보통 ₩81,000 ~ ₩389,000대',
+  overnight:'보통 ₩350,000 ~ ₩550,000대',
+};
+
+// ── STATE ──
+let calMonthIdx = 0; // current month index in MONTHS
+const state = {
+  types:   new Set(ALL_TYPES),
+  dates:   new Set(),
+  pax:     2,
+  guide:   'any',
+  courses: new Set()
+};
+
+function navMonth(dir) {
+  calMonthIdx = Math.max(0, Math.min(MONTHS.length - 1, calMonthIdx + dir));
+  buildCalendar();
+}
+
+// ==================== FETCH ====================
+async function loadData() {
+  document.getElementById('loadingState').style.display = '';
+  document.getElementById('errorState').classList.remove('visible');
+  document.getElementById('appContent').classList.add('hidden');
+  document.getElementById('staleBanner').classList.remove('visible');
+
+  try {
+    const res = await fetch(DATA_URL);
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    RAW_DATA = await res.json();
+    RAW_DATA.products = RAW_DATA.products.filter(p => {
+      return Object.values(p.availability).some(v => v.open);
+    });
+    document.getElementById('loadingState').style.display = 'none';
+    document.getElementById('appContent').classList.remove('hidden');
+    document.getElementById('footerMeta').textContent = RAW_DATA.data_as_of
+      ? '📅 ' + RAW_DATA.data_as_of + ' 기준 가용 현황' : '';
+    checkStaleness(RAW_DATA.data_as_of);
+    buildQuickBtns();
+    buildCalendar();
+    renderResults();
+  } catch(e) {
+    document.getElementById('loadingState').style.display = 'none';
+    document.getElementById('errorState').classList.add('visible');
+    console.error(e);
+  }
+}
+
+function checkStaleness(d) {
+  if (!d) return;
+  const t = getTodayKST();
+  const todayMs = Date.UTC(t.year, t.month-1, t.day);
+  const p = d.split('-').map(Number);
+  const dataMs = Date.UTC(p[0], p[1]-1, p[2]);
+  const diff = Math.floor((todayMs - dataMs) / 86400000);
+  if (diff >= 2) {
+    const b = document.getElementById('staleBanner');
+    b.textContent = '⚠️ 데이터가 ' + diff + '일 전 기준이에요. 실제 상황과 다를 수 있으니 상품 페이지에서 최종 확인해주세요.';
+    b.classList.add('visible');
+  }
+}
+
+// ==================== FILTER INTERACTIONS ====================
+function toggleType(t) {
+  if (state.types.has(t)) {
+    // don't allow zero selected — treat as all
+    if (state.types.size === 1) { state.types = new Set(ALL_TYPES); }
+    else { state.types.delete(t); }
+  } else {
+    state.types.add(t);
+  }
+  // if all selected, reset to "all" state visually
+  const allSelected = state.types.size === ALL_TYPES.length;
+  document.querySelectorAll('[data-type]').forEach(b => {
+    b.classList.toggle('active', allSelected || state.types.has(b.dataset.type));
+  });
+  updatePriceHint();
+  buildCalendar();
+  renderResults();
+}
+
+function updatePriceHint() {
+  const el = document.getElementById('priceHint');
+  const sel = [...state.types];
+  if (sel.length === 1) {
+    el.textContent = PRICE_HINTS[sel[0]] || '';
+  } else if (sel.length < ALL_TYPES.length) {
+    const hints = sel.map(t => TYPE_NAMES[t] + ': ' + PRICE_HINTS[t]);
+    el.textContent = hints.join(' / ');
+  } else {
+    el.textContent = '';
+  }
+}
+
+function setGuide(g) {
+  state.guide = g;
+  document.querySelectorAll('[data-guide]').forEach(b => {
+    b.classList.toggle('active', b.dataset.guide === g);
+  });
+  renderResults();
+}
+
+function toggleCourse(c) {
+  if (state.courses.has(c)) state.courses.delete(c);
+  else state.courses.add(c);
+  document.querySelectorAll('[data-course]').forEach(b => {
+    b.classList.toggle('active', state.courses.has(b.dataset.course));
+  });
+  renderResults();
+}
+
+function changePax(d) {
+  const nv = state.pax + d;
+  if (nv < 1 || nv > 10) return;
+  state.pax = nv;
+  document.getElementById('paxCount').textContent = nv;
+  document.getElementById('btnMinus').disabled = nv <= 1;
+  document.getElementById('btnPlus').disabled  = nv >= 10;
+  buildCalendar();
+  renderResults();
+}
+
+// ==================== CALENDAR ====================
+function getDateStr(day, month) {
+  return '2026-' + String(month).padStart(2,'0') + '-' + String(day).padStart(2,'0');
+}
+function isDayPast(day, month) {
+  const ds = getDateStr(day, month);
+  const t = getTodayKST();
+  const dateVal = 20260000 + month*100 + day;
+  const todayVal = t.year*10000 + t.month*100 + t.day;
+  return dateVal <= todayVal;
+}
+
+function countAvail(dateStr) {
+  let n = 0;
+  for (const p of RAW_DATA.products) {
+    const typeOk = state.types.size === ALL_TYPES.length || state.types.has(p.tour_type);
+    if (!typeOk) continue;
+    const av = p.availability[dateStr];
+    if (!av || !av.open) continue;
+    if (p.stock_managed && av.remain !== null && av.remain < state.pax) continue;
+    n++;
+  }
+  return n;
+}
+
+function buildQuickBtns() {
+  const row = document.getElementById('calQuickRow');
+  row.innerHTML = '';
+
+  const all = document.createElement('button');
+  all.className = 'cal-quick-btn';
+  all.textContent = '전체';
+  all.onclick = () => quickAll();
+  row.appendChild(all);
+
+  const clr = document.createElement('button');
+  clr.className = 'cal-quick-btn';
+  clr.textContent = '선택 해제';
+  clr.onclick = () => { state.dates.clear(); buildCalendar(); renderResults(); };
+  row.appendChild(clr);
+
+  WEEK_RANGES.forEach(r => {
+    const t = getTodayKST();
+    const endVal = 20260000 + r.month*100 + r.end;
+    const todayVal = t.year*10000 + t.month*100 + t.day;
+    if (endVal < todayVal) return;
+    const b = document.createElement('button');
+    b.className = 'cal-quick-btn';
+    b.textContent = r.label;
+    b.onclick = () => quickRange(r.start, r.end, r.month);
+    row.appendChild(b);
+  });
+}
+
+function quickAll() {
+  state.dates.clear();
+  MONTHS.forEach(mo => {
+    for (let d = 1; d <= mo.days; d++) {
+      if (isDayPast(d, mo.month)) continue;
+      const ds = getDateStr(d, mo.month);
+      if (countAvail(ds) > 0) state.dates.add(ds);
+    }
+  });
+  buildCalendar(); renderResults();
+}
+
+function quickRange(s, e, month) {
+  state.dates.clear();
+  for (let d = s; d <= e; d++) {
+    if (isDayPast(d, month)) continue;
+    const ds = getDateStr(d, month);
+    if (countAvail(ds) > 0) state.dates.add(ds);
+  }
+  buildCalendar(); renderResults();
+}
+
+function buildCalendar() {
+  const grid = document.getElementById('calMonths');
+  grid.innerHTML = '';
+  const mo = MONTHS[calMonthIdx];
+
+  // update nav title & button states
+  document.getElementById('calMonthTitle').textContent = mo.year + '년 ' + mo.name;
+  document.getElementById('calPrev').style.visibility = calMonthIdx > 0 ? 'visible' : 'hidden';
+  document.getElementById('calNext').style.visibility = calMonthIdx < MONTHS.length - 1 ? 'visible' : 'hidden';
+
+  const maxProd = RAW_DATA.products.filter(p => state.types.size===ALL_TYPES.length || state.types.has(p.tour_type)).length || 1;
+
+  for (let i = 0; i < mo.firstDow; i++) {
+    const el = document.createElement('div');
+    el.className = 'cal-day empty';
+    grid.appendChild(el);
+  }
+
+  for (let day = 1; day <= mo.days; day++) {
+    const ds = getDateStr(day, mo.month);
+    const dow = (mo.firstDow + day - 1) % 7;
+    const past = isDayPast(day, mo.month);
+    const el = document.createElement('div');
+
+    let cls = 'cal-day';
+    if (dow === 0) cls += ' sunday';
+    if (dow === 6) cls += ' saturday';
+    if (past) cls += ' past';
+
+    let cnt = 0;
+    if (!past) {
+      cnt = countAvail(ds);
+      if (cnt === 0) cls += ' avail-none';
+      else if (cnt >= maxProd * .7) cls += ' avail-high';
+      else if (cnt >= maxProd * .3) cls += ' avail-med';
+      else cls += ' avail-low';
+    }
+    if (state.dates.has(ds)) cls += ' selected';
+    el.className = cls;
+    el.innerHTML = '<span class="day-num">' + day + '</span><span class="avail-dot"></span>';
+
+    if (!past && cnt > 0) {
+      el.onclick = () => {
+        if (state.dates.has(ds)) state.dates.delete(ds);
+        else state.dates.add(ds);
+        el.classList.toggle('selected');
+        updateCalLabel();
+        renderResults();
+      };
+      el.title = mo.month + '/' + day + DOW_SHORT[dow] + ' — ' + cnt + '개 가능';
+    }
+    grid.appendChild(el);
+  }
+
+  const lastDow = (mo.firstDow + mo.days - 1) % 7;
+  for (let i = lastDow + 1; i < 7; i++) {
+    const el = document.createElement('div');
+    el.className = 'cal-day empty';
+    grid.appendChild(el);
+  }
+  updateCalLabel();
+}
+
+function updateCalLabel() {
+  const el = document.getElementById('calLabel');
+  const n = state.dates.size;
+  if (n === 0) {
+    el.textContent = '날짜 미선택 = 전체';
+    el.className = 'cal-selected-label warn';
+  } else {
+    el.textContent = n + '일 선택됨';
+    el.className = 'cal-selected-label';
+  }
+}
+
+// ==================== FILTER LOGIC ====================
+function isAvailOnDate(p, ds) {
+  const av = p.availability[ds];
+  if (!av || !av.open) return false;
+  if (p.stock_managed && av.remain !== null && av.remain < state.pax) return false;
+  return true;
+}
+
+function productMatchesDates(p) {
+  if (state.dates.size === 0) return true; // no date filter
+  for (const d of state.dates) if (isAvailOnDate(p, d)) return true;
+  return false;
+}
+
+function productMatchesGuide(p) {
+  if (state.guide === 'any') return true;
+  if (state.guide === 'korean') return p.guide === 'korean';
+  if (state.guide === 'foreign') return ['english','multilingual'].includes(p.guide);
+  return true;
+}
+
+function productMatchesCourses(p) {
+  if (state.courses.size === 0) return true;
+  const tags = COURSE_TAGS[p.gid] || [];
+  for (const c of state.courses) if (tags.includes(c)) return true;
+  return false;
+}
+
+function productMatchesType(p) {
+  return state.types.size === ALL_TYPES.length || state.types.has(p.tour_type);
+}
+
+function isFullMatch(p) {
+  return productMatchesType(p) && productMatchesDates(p) && productMatchesGuide(p) && productMatchesCourses(p);
+}
+
+// count mismatches (used for alt detection)
+function mismatchCount(p) {
+  let n = 0;
+  if (!productMatchesType(p)) n++;
+  if (!productMatchesDates(p)) n++;
+  if (!productMatchesGuide(p)) n++;
+  if (!productMatchesCourses(p)) n++;
+  return n;
+}
+
+// ==================== RANKING ──
+// top 3 with type-diversity
+function pickTop3(matches) {
+  if (matches.length === 0) return [];
+  const sorted = [...matches].sort((a,b) => (QUANTITY[b.gid]||0) - (QUANTITY[a.gid]||0));
+
+  // bottom 20% cutoff: below this quantity, no type-diversity boost
+  const cutoffIdx = Math.ceil(sorted.length * 0.8);
+  const cutoffQty = cutoffIdx < sorted.length ? (QUANTITY[sorted[cutoffIdx].gid]||0) : 0;
+
+  function isEligibleForDiversity(p) {
+    return (QUANTITY[p.gid]||0) > cutoffQty;
+  }
+
+  const result = [];
+
+  // 1st: overall top
+  result.push(sorted[0]);
+
+  // 2nd: different type from 1st (only if not bottom 20%)
+  const pick2 = sorted.find(p => p !== result[0] && p.tour_type !== result[0].tour_type && isEligibleForDiversity(p))
+              || sorted.find(p => p !== result[0]);
+  if (pick2) result.push(pick2);
+
+  // 3rd: different type from 1st and 2nd (only if not bottom 20%)
+  const usedTypes = new Set(result.map(p => p.tour_type));
+  const pick3 = sorted.find(p => !result.includes(p) && !usedTypes.has(p.tour_type) && isEligibleForDiversity(p))
+              || sorted.find(p => !result.includes(p));
+  if (pick3) result.push(pick3);
+
+  return result;
+}
+
+// ==================== HELPERS ──
+function fmt(n) { return '₩' + n.toLocaleString('ko-KR'); }
+function utmUrl(p) { return p.url + '?utm_source=nagoya_kamikochi_finder&utm_medium=referral&utm_campaign=nagoya_kamikochi_2026&utm_content=' + p.gid; }
+
+function fmtDate(ds) {
+  const parts = ds.split('-');
+  const mo = parseInt(parts[1]);
+  const day = parseInt(parts[2]);
+  const mInfo = MONTHS.find(m => m.month === mo);
+  if (!mInfo) return ds;
+  const dow = (mInfo.firstDow + day - 1) % 7;
+  return mo + '/' + day + DOW_SHORT[dow];
+}
+
+function lowestOptionPrice(p) {
+  if (!p.options || p.options.length === 0) return p.price;
+  return Math.min(...p.options.map(o => o.price));
+}
+
+function getAvailSummary(p) {
+  const selDates = state.dates.size > 0 ? [...state.dates] : allSeasonDates();
+  const avail = selDates.filter(d => isAvailOnDate(p, d));
+  if (avail.length === 0) return { label:'마감', cls:'badge-avail-none' };
+  if (!p.stock_managed) return { label:'예약 가능', cls:'badge-avail-ok' };
+  // managed: best remain
+  let best = 0;
+  for (const d of avail) {
+    const r = p.availability[d].remain;
+    if (r === null) return { label:'예약 가능', cls:'badge-avail-ok' };
+    if (r > best) best = r;
+  }
+  if (best >= 5) return { label: best+'석 남음', cls:'badge-stock-ok' };
+  if (best >= 2) return { label: best+'석 남음', cls:'badge-stock-warn' };
+  return { label: best+'석 남음', cls:'badge-stock-low' };
+}
+
+function getAvailDayCount(p) {
+  if (state.dates.size === 0) return null;
+  const avail = [...state.dates].filter(d => isAvailOnDate(p, d));
+  return { avail: avail.length, total: state.dates.size };
+}
+
+function allSeasonDates() {
+  const out = [];
+  MONTHS.forEach(mo => {
+    for (let d = 1; d <= mo.days; d++) out.push(getDateStr(d, mo.month));
+  });
+  return out;
+}
+
+function guideInfo(guide) {
+  if (guide === 'korean')       return { text:'🇰🇷 한국어', cls:'badge-guide-ko' };
+  if (guide === 'english')      return { text:'🇬🇧 영어', cls:'badge-guide-en' };
+  if (guide === 'multilingual') return { text:'🚌 다국어', cls:'badge-guide-multi' };
+  if (guide === 'uncertain')    return { text:'❓ 확인필요', cls:'badge-guide-uncertain' };
+  if (guide === 'self')         return { text:'🗺️ 셀프', cls:'badge-guide-self' };
+  return { text:'🌏 외국어', cls:'badge-guide-en' };
+}
+
+function typeInfo(t) {
+  if (t === 'day')       return { text:'☀️ 일일', cls:'badge-type-day' };
+  if (t === 'overnight') return { text:'🌙 1박2일+', cls:'badge-type-overnight' };
+  return { text:'🌙 1박2일+', cls:'badge-type-overnight' };
+}
+
+function nearestOpenDate(p) {
+  const t = getTodayKST();
+  const todayStr = t.year+'-'+String(t.month).padStart(2,'0')+'-'+String(t.day).padStart(2,'0');
+  const days = Object.keys(p.availability).sort();
+  for (const d of days) {
+    if (d <= todayStr) continue;
+    if (isAvailOnDate(p, d)) return d;
+  }
+  return null;
+}
+
+// ==================== RENDER ──
+function renderResults() {
+  const container = document.getElementById('resultsSection');
+
+  const matches = RAW_DATA.products.filter(isFullMatch);
+  const top3 = pickTop3(matches);
+
+  // alt candidates: 1 mismatch, not in matches
+  const alts = RAW_DATA.products
+    .filter(p => !isFullMatch(p) && mismatchCount(p) === 1)
+    .map(p => {
+      let hint = '';
+      if (!productMatchesDates(p)) {
+        const nd = nearestOpenDate(p);
+        if (!nd) return null;
+        hint = '📅 ' + fmtDate(nd) + '으로 바꾸면 예약 가능!';
+      } else if (!productMatchesGuide(p)) {
+        if (state.guide === 'korean') hint = '🌏 영어/다국어 가이드로 하면 ' + fmt(lowestOptionPrice(p)) + '부터!';
+        else hint = '🇰🇷 한국어 가이드도 있어요!';
+      } else if (!productMatchesType(p)) {
+        hint = typeInfo(p.tour_type).text + ' ' + TYPE_NAMES[p.tour_type] + '로 바꾸면 이 투어도!';
+      } else if (!productMatchesCourses(p)) {
+        hint = '🗺️ 코스 조건 바꾸면 가능!';
+      }
+      return hint ? { p, hint } : null;
+    })
+    .filter(Boolean)
+    .sort((a,b) => (QUANTITY[b.p.gid]||0) - (QUANTITY[a.p.gid]||0))
+    .slice(0, 2);
+
+  let html = '';
+
+  // section header
+  html += '<div class="section-header" style="margin-bottom:10px">';
+  html +=   '<div class="section-title">🏔️ 추천 투어 비교</div>';
+  html +=   '<div class="match-count">조건 맞는 투어 <strong>' + matches.length + '</strong>개</div>';
+  html += '</div>';
+
+  if (matches.length === 0) {
+    html += buildEmpty();
+  } else {
+    // comparison grid
+    html += '<div class="compare-grid" id="compareGrid">';
+    const ranks = ['🥇', '🥈', '🥉'];
+    top3.forEach((p, i) => {
+      html += buildCompareCard(p, i, ranks[i]);
+    });
+    html += '</div>';
+
+    // swipe hint (mobile)
+    if (top3.length > 1) {
+      html += '<div class="swipe-hint">← 스와이프해서 비교 →</div>';
+    }
+  }
+
+  // alt section
+  if (alts.length > 0) {
+    html += '<div class="alt-section">';
+    html += '<div class="alt-section-title">💡 조건 바꾸면 가능한 투어</div>';
+    html += '<div class="alt-card-row">';
+    alts.forEach(({ p, hint }) => { html += buildAltCard(p, hint); });
+    html += '</div></div>';
+  }
+
+  // all products accordion
+  html += buildAccordion(matches);
+
+  container.innerHTML = html;
+}
+
+function buildCompareCard(p, rank, medal) {
+  const guide = guideInfo(p.guide);
+  const type  = typeInfo(p.tour_type);
+  const stock = getAvailSummary(p);
+  const price = lowestOptionPrice(p);
+  const dayCount = getAvailDayCount(p);
+  const feature = FEATURES[p.gid] || '';
+  const courses = COURSE_TAGS[p.gid] || [];
+  const courseTags = courses.map(c => '<span class="course-tag">' + c + '</span>').join('');
+
+  let availLine = '';
+  if (dayCount) {
+    availLine = dayCount.avail + '/' + dayCount.total + '일 가능';
+  }
+
+  return `
+    <div class="compare-card rank-${rank+1}">
+      <div class="rank-badge">
+        <span>${medal}</span>
+        <span class="rank-num">추천 ${rank+1}</span>
+      </div>
+      <div class="card-name">${DISPLAY_NAMES[p.gid] || p.name}</div>
+      ${feature ? '<div class="compare-feature">' + feature + '</div>' : ''}
+      <div class="compare-price">${fmt(price)}<span class="price-unit">~</span></div>
+      <table class="compare-table">
+        <tr>
+          <td>유형</td>
+          <td><span class="badge ${type.cls}">${type.text}</span></td>
+        </tr>
+        <tr>
+          <td>가이드</td>
+          <td><span class="badge ${guide.cls}">${guide.text}</span></td>
+        </tr>
+        ${courses.length > 0 ? '<tr><td>코스</td><td><div class="course-tags">' + courseTags + '</div></td></tr>' : ''}
+        <tr>
+          <td>잔여석</td>
+          <td><span class="badge ${stock.cls}">${stock.label}</span></td>
+        </tr>
+        ${availLine ? '<tr><td>가용일</td><td><span style="font-size:11px;color:var(--gray-600)">' + availLine + '</span></td></tr>' : ''}
+      </table>
+      <a href="${utmUrl(p)}" class="btn-book" target="_blank" rel="noopener noreferrer">예약하러 가기 →</a>
+    </div>`;
+}
+
+function buildAltCard(p, hint) {
+  const guide = guideInfo(p.guide);
+  const price = lowestOptionPrice(p);
+  return `
+    <div class="alt-card">
+      <div class="alt-hint-label">${hint}</div>
+      <div class="card-name">${DISPLAY_NAMES[p.gid] || p.name}</div>
+      <div class="card-price">${fmt(price)}<span style="font-size:10px;color:var(--gray-400)">~</span></div>
+      <div style="display:flex;align-items:center;gap:4px;margin-bottom:8px">
+        <span class="badge ${guide.cls}">${guide.text}</span>
+      </div>
+      <a href="${utmUrl(p)}" class="btn-book" target="_blank" rel="noopener noreferrer">보러 가기 →</a>
+    </div>`;
+}
+
+function buildAccordion(matches) {
+  if (matches.length === 0) return '';
+  const sorted = [...matches].sort((a,b) => (QUANTITY[b.gid]||0) - (QUANTITY[a.gid]||0));
+
+  let rows = '';
+  sorted.forEach(p => {
+    const price = lowestOptionPrice(p);
+    const guide = guideInfo(p.guide);
+    const type  = typeInfo(p.tour_type);
+    const dayCount = getAvailDayCount(p);
+    let availText = '';
+    if (dayCount) availText = dayCount.avail + '/' + dayCount.total + '일';
+
+    rows += `
+      <div class="all-product-row">
+        <div class="all-product-info">
+          <div class="all-product-name">${DISPLAY_NAMES[p.gid] || p.name}</div>
+          <div class="all-product-meta">
+            <span class="all-product-price">${fmt(price)}~</span>
+            <span class="badge ${guide.cls}">${guide.text}</span>
+            <span class="badge ${type.cls}">${type.text}</span>
+            ${availText ? '<span style="font-size:10px;color:var(--gray-400)">' + availText + '</span>' : ''}
+          </div>
+        </div>
+        <a href="${utmUrl(p)}" class="all-product-link" target="_blank" rel="noopener noreferrer">예약 →</a>
+      </div>`;
+  });
+
+  return `
+    <div class="accordion-wrap">
+      <button class="accordion-toggle" onclick="toggleAccordion(this)">
+        📋 조건에 맞는 ${matches.length}개 상품 보기
+        <span class="toggle-icon">▼</span>
+      </button>
+      <div class="accordion-body">${rows}</div>
+    </div>`;
+}
+
+function toggleAccordion(btn) {
+  btn.classList.toggle('open');
+  btn.nextElementSibling.classList.toggle('open');
+}
+
+function buildEmpty() {
+  const upcoming = [];
+  MONTHS.forEach(mo => {
+    for (let d = 1; d <= mo.days && upcoming.length < 4; d++) {
+      if (isDayPast(d, mo.month)) continue;
+      const ds = getDateStr(d, mo.month);
+      const cnt = RAW_DATA.products.filter(p => isAvailOnDate(p, ds)).length;
+      if (cnt > 0) {
+        const dow = (mo.firstDow + d - 1) % 7;
+        upcoming.push({ ds, cnt, label: mo.month + '/' + d + DOW_SHORT[dow] });
+      }
+    }
+  });
+  const rows = upcoming.map(u =>
+    '<div class="empty-avail-row">📅 <strong>' + u.label + '</strong> — ' + u.cnt + '개 투어 가능</div>'
+  ).join('');
+
+  return `
+    <div class="empty-state">
+      <div class="empty-icon">😢</div>
+      <h3>선택하신 조건에 맞는 투어가 없어요</h3>
+      <p>다른 날짜를 선택하거나 가이드 옵션을 변경해보세요!</p>
+      ${rows ? '<div class="empty-avail-rows"><div style="font-size:11px;font-weight:700;color:var(--gray-500);margin-bottom:4px">가용 상품이 있는 가까운 날짜</div>' + rows + '</div>' : ''}
+    </div>`;
+}
+
+// ── BOOT ──
+loadData();
+</script>
+</body>
+</html>
