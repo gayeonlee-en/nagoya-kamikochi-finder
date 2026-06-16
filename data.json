@@ -1,12 +1,10 @@
 {
-  "data_as_of": "2026-06-16",
+  "data_as_of": "2026-06-17",
   "season_end": "2026-08-31",
   "products": [
     {
       "gid": "4634960",
       "name": "가미코치 하이킹 버스투어",
-      "partner": "HIS",
-      "partner_id": 5960,
       "price": 81000,
       "tour_type": "day",
       "guide": "multilingual",
@@ -20,15 +18,10 @@
       ],
       "courses": [],
       "quantity": 32,
-      "feature": "HIS 운영 최저가 버스투어",
+      "feature": "즉시확정, 일본어 안내 버스투어",
+      "instant_confirm": true,
       "url": "https://experiences.myrealtrip.com/products/4634960?utm_source=nagoya_kamikochi_finder&utm_medium=referral&utm_campaign=nagoya_kamikochi_2026&utm_content=4634960",
-      "instant_confirm": false,
       "availability": {
-        "2026-06-16": {
-          "open": false,
-          "remain": null,
-          "registered": null
-        },
         "2026-06-17": {
           "open": false,
           "remain": null,
@@ -413,9 +406,7 @@
     },
     {
       "gid": "4766833",
-      "name": "가미코치 1일 투어 (영어/일본어 선택)",
-      "partner": "Yu Dingxin",
-      "partner_id": 131848,
+      "name": "가미코치 1일 투어",
       "price": 88000,
       "tour_type": "day",
       "guide": "english",
@@ -427,21 +418,16 @@
           "price": 88000
         },
         {
-          "name": "성인, 일본어",
+          "name": "성인, 중국어",
           "price": 88000
         }
       ],
       "courses": [],
       "quantity": 9,
-      "feature": "영어/일본어 가이드 선택 가능",
+      "feature": "즉시확정, 영어/중국어 가이드 선택",
+      "instant_confirm": true,
       "url": "https://experiences.myrealtrip.com/products/4766833?utm_source=nagoya_kamikochi_finder&utm_medium=referral&utm_campaign=nagoya_kamikochi_2026&utm_content=4766833",
-      "instant_confirm": false,
       "availability": {
-        "2026-06-16": {
-          "open": false,
-          "remain": null,
-          "registered": null
-        },
         "2026-06-17": {
           "open": true,
           "remain": 80,
@@ -827,8 +813,6 @@
     {
       "gid": "5782051",
       "name": "가미코치 당일 하이킹",
-      "partner": "Sanwa Travel",
-      "partner_id": 124976,
       "price": 95000,
       "tour_type": "day",
       "guide": "english",
@@ -843,14 +827,9 @@
       "courses": [],
       "quantity": 14,
       "feature": "영어 가이드 하이킹 투어",
-      "url": "https://experiences.myrealtrip.com/products/5782051?utm_source=nagoya_kamikochi_finder&utm_medium=referral&utm_campaign=nagoya_kamikochi_2026&utm_content=5782051",
       "instant_confirm": false,
+      "url": "https://experiences.myrealtrip.com/products/5782051?utm_source=nagoya_kamikochi_finder&utm_medium=referral&utm_campaign=nagoya_kamikochi_2026&utm_content=5782051",
       "availability": {
-        "2026-06-16": {
-          "open": false,
-          "remain": null,
-          "registered": null
-        },
         "2026-06-17": {
           "open": true,
           "remain": 200,
@@ -1236,11 +1215,9 @@
     {
       "gid": "5812325",
       "name": "가미코치 자유 하이킹 버스투어",
-      "partner": "트래블컴퍼니",
-      "partner_id": 149199,
       "price": 99900,
       "tour_type": "day",
-      "guide": "self",
+      "guide": "english",
       "duration_days": 1,
       "stock_managed": false,
       "options": [
@@ -1251,15 +1228,412 @@
       ],
       "courses": [],
       "quantity": 5,
-      "feature": "가이드 없이 자유롭게 하이킹",
-      "url": "https://experiences.myrealtrip.com/products/5812325?utm_source=nagoya_kamikochi_finder&utm_medium=referral&utm_campaign=nagoya_kamikochi_2026&utm_content=5812325",
+      "feature": "영어/일본어 안내, 자유 하이킹",
       "instant_confirm": false,
+      "url": "https://experiences.myrealtrip.com/products/5812325?utm_source=nagoya_kamikochi_finder&utm_medium=referral&utm_campaign=nagoya_kamikochi_2026&utm_content=5812325",
       "availability": {
-        "2026-06-16": {
+        "2026-06-17": {
           "open": false,
           "remain": null,
           "registered": null
         },
+        "2026-06-18": {
+          "open": false,
+          "remain": null,
+          "registered": null
+        },
+        "2026-06-19": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-06-20": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-06-21": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-06-22": {
+          "open": false,
+          "remain": null,
+          "registered": null
+        },
+        "2026-06-23": {
+          "open": false,
+          "remain": null,
+          "registered": null
+        },
+        "2026-06-24": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-06-25": {
+          "open": false,
+          "remain": null,
+          "registered": null
+        },
+        "2026-06-26": {
+          "open": false,
+          "remain": null,
+          "registered": null
+        },
+        "2026-06-27": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-06-28": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-06-29": {
+          "open": false,
+          "remain": null,
+          "registered": null
+        },
+        "2026-06-30": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-07-01": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-07-02": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-07-03": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-07-04": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-07-05": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-07-06": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-07-07": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-07-08": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-07-09": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-07-10": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-07-11": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-07-12": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-07-13": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-07-14": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-07-15": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-07-16": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-07-17": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-07-18": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-07-19": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-07-20": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-07-21": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-07-22": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-07-23": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-07-24": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-07-25": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-07-26": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-07-27": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-07-28": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-07-29": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-07-30": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-07-31": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-08-01": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-08-02": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-08-03": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-08-04": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-08-05": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-08-06": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-08-07": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-08-08": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-08-09": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-08-10": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-08-11": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-08-12": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-08-13": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-08-14": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-08-15": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-08-16": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-08-17": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-08-18": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-08-19": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-08-20": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-08-21": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-08-22": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-08-23": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-08-24": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-08-25": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-08-26": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-08-27": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-08-28": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-08-29": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-08-30": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        },
+        "2026-08-31": {
+          "open": true,
+          "remain": null,
+          "registered": null
+        }
+      }
+    },
+    {
+      "gid": "5728607",
+      "name": "가미코치 하이킹 1일 버스투어",
+      "price": 99900,
+      "tour_type": "day",
+      "guide": "english",
+      "duration_days": 1,
+      "stock_managed": false,
+      "options": [
+        {
+          "name": "성인",
+          "price": 99900
+        }
+      ],
+      "courses": [],
+      "quantity": 3,
+      "feature": "영어/일본어 안내 버스투어",
+      "instant_confirm": false,
+      "url": "https://experiences.myrealtrip.com/products/5728607?utm_source=nagoya_kamikochi_finder&utm_medium=referral&utm_campaign=nagoya_kamikochi_2026&utm_content=5728607",
+      "availability": {
         "2026-06-17": {
           "open": false,
           "remain": null,
@@ -1645,8 +2019,6 @@
     {
       "gid": "3881217",
       "name": "알펜루트 & 가미코치 1일 투어",
-      "partner": "Lou",
-      "partner_id": 13107,
       "price": 389000,
       "tour_type": "day",
       "guide": "korean",
@@ -1663,14 +2035,9 @@
       ],
       "quantity": 8,
       "feature": "한국어 가이드, 알펜루트+가미코치 동시",
-      "url": "https://experiences.myrealtrip.com/products/3881217?utm_source=nagoya_kamikochi_finder&utm_medium=referral&utm_campaign=nagoya_kamikochi_2026&utm_content=3881217",
       "instant_confirm": false,
+      "url": "https://experiences.myrealtrip.com/products/3881217?utm_source=nagoya_kamikochi_finder&utm_medium=referral&utm_campaign=nagoya_kamikochi_2026&utm_content=3881217",
       "availability": {
-        "2026-06-16": {
-          "open": false,
-          "remain": null,
-          "registered": null
-        },
         "2026-06-17": {
           "open": false,
           "remain": null,
@@ -2056,10 +2423,8 @@
     {
       "gid": "3881219",
       "name": "후지산/알펜루트/가미코치 선택투어 1박2일~",
-      "partner": "Lou",
-      "partner_id": 13107,
       "price": 350000,
-      "tour_type": "multi",
+      "tour_type": "overnight",
       "guide": "korean",
       "duration_days": 2,
       "stock_managed": false,
@@ -2079,14 +2444,9 @@
       ],
       "quantity": 45,
       "feature": "한국어 가이드, 후지산/알펜루트 연계 가능",
-      "url": "https://experiences.myrealtrip.com/products/3881219?utm_source=nagoya_kamikochi_finder&utm_medium=referral&utm_campaign=nagoya_kamikochi_2026&utm_content=3881219",
       "instant_confirm": false,
+      "url": "https://experiences.myrealtrip.com/products/3881219?utm_source=nagoya_kamikochi_finder&utm_medium=referral&utm_campaign=nagoya_kamikochi_2026&utm_content=3881219",
       "availability": {
-        "2026-06-16": {
-          "open": false,
-          "remain": null,
-          "registered": null
-        },
         "2026-06-17": {
           "open": true,
           "remain": null,
@@ -2466,6 +2826,411 @@
           "open": true,
           "remain": null,
           "registered": null
+        }
+      }
+    },
+    {
+      "gid": "3425908",
+      "name": "알펜루트 가미코치 시라카와고 1박2일 온천 프리미엄",
+      "price": 498000,
+      "tour_type": "overnight",
+      "guide": "korean",
+      "duration_days": 2,
+      "stock_managed": true,
+      "options": [
+        {
+          "name": "1박2일 온천 프리미엄",
+          "price": 498000
+        }
+      ],
+      "courses": [
+        "알펜루트",
+        "시라카와고"
+      ],
+      "quantity": 7,
+      "feature": "한국어 가이드, 온천 숙박 포함 프리미엄",
+      "instant_confirm": false,
+      "url": "https://experiences.myrealtrip.com/products/3425908?utm_source=nagoya_kamikochi_finder&utm_medium=referral&utm_campaign=nagoya_kamikochi_2026&utm_content=3425908",
+      "availability": {
+        "2026-06-17": {
+          "open": false,
+          "remain": null,
+          "registered": null
+        },
+        "2026-06-18": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-06-19": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-06-20": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-06-21": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-06-22": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-06-23": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-06-24": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-06-25": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-06-26": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-06-27": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-06-28": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-06-29": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-06-30": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-07-01": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-07-02": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-07-03": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-07-04": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-07-05": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-07-06": {
+          "open": false,
+          "remain": null,
+          "registered": null
+        },
+        "2026-07-07": {
+          "open": false,
+          "remain": null,
+          "registered": null
+        },
+        "2026-07-08": {
+          "open": false,
+          "remain": null,
+          "registered": null
+        },
+        "2026-07-09": {
+          "open": false,
+          "remain": null,
+          "registered": null
+        },
+        "2026-07-10": {
+          "open": false,
+          "remain": null,
+          "registered": null
+        },
+        "2026-07-11": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-07-12": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-07-13": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-07-14": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-07-15": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-07-16": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-07-17": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-07-18": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-07-19": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-07-20": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-07-21": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-07-22": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-07-23": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-07-24": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-07-25": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-07-26": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-07-27": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-07-28": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-07-29": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-07-30": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-07-31": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-08-01": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-08-02": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-08-03": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-08-04": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-08-05": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-08-06": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-08-07": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-08-08": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-08-09": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-08-10": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-08-11": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-08-12": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-08-13": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-08-14": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-08-15": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-08-16": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-08-17": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-08-18": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-08-19": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-08-20": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-08-21": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-08-22": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-08-23": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-08-24": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-08-25": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-08-26": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-08-27": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-08-28": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-08-29": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-08-30": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
+        },
+        "2026-08-31": {
+          "open": true,
+          "remain": 12,
+          "registered": 12
         }
       }
     }
